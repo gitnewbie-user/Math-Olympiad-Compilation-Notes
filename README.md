@@ -1,6 +1,19 @@
-# Math-Olympiad-Compilation-Notes
-This is meant to be used as a quick compilation of, what I think are, the most useful theorems, lemmas and identities for problem solving in the various different areas that Math Olympiad problems can come from.
+# Math Olympiad Compilation Notes
 
-Important Disclaimer: This will be repeated multiple times....This is not meant to be a learning resource if you are first coming across any theorem or idea that you have not seen before, proofs of the various theorems and identities will not be provided in this repo but I strongly encourage everyone to learn and try to fully understand the ideas behind each of them for a better understanding. The sources and links for all the proofs as well as further readings that I have used over the last 4 years for my own mathematical olympiad journey will be provided. Have Fun!
+This repository is a quick compilation of what I think are some of the most useful theorems, lemmas and identities for solving problems from the different areas of mathematical olympiads.
 
-Side Note: Usually a few days before any math olympiad competition that I would participate in,like the British Maths Olympiad or the Singapore Mathematical Olympiad, I would usually have a stack of A4 paper with handwritten notes and compilations that I would study as a form of revision to ensure that I am able to always correctly recollect anything in a short time. The pdfs and tex files are just digital and cleaner versions of that...and is intended to be used in a similar manner in which I used my handwritten notes for. Also just learning to write in LaTex so if any code is not standard practices or not optimal, that's my bad.
+## Important Disclaimer
+
+This is not meant to be a learning resource for someone encountering a theorem or idea for the first time. Proofs of the theorems and identities will not be included in this repository.
+
+I strongly encourage readers to learn the proofs and properly understand the ideas behind each result. Sources, links to proofs and further reading that I have used during the last four years of my own mathematical olympiad journey will be provided.
+
+Have fun!
+
+## Side Note
+
+A few days before competitions such as the British Mathematical Olympiad or the Singapore Mathematical Olympiad, I would usually revise using a stack of A4 papers containing handwritten notes and compilations.
+
+The PDF and TeX files in this repository are cleaner digital versions of those notes and are intended to be used in a similar way: as a quick revision resource for recalling important results in a short amount of time.
+
+I am also still learning LaTeX, so some of the code may not follow standard practices or be fully optimised.
