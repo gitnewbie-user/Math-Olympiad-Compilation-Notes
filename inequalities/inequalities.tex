@@ -1,38 +1,32 @@
 \documentclass[11pt]{article}
 \usepackage[margin=1in]{geometry}
-
 % Core packages
 \usepackage{amsmath,amssymb}
-\usepackage{tikz-cd}
-\usepackage{multicol}
 \usepackage{titlesec}
 \usepackage{hyperref}
-
+\hypersetup{hidelinks}
 % Section formatting
 \titleformat{name=\section,numberless}{\normalfont\Large\bfseries}{}{0pt}{\underline}
 \titlespacing*{\section}{0pt}{0.6\baselineskip}{0.15\baselineskip}
-
 % Paragraphs
 \setlength{\parindent}{0pt}
-\setlength{\parskip}{0.55\baselineskip}
-
+\setlength{\parskip}{0.2\baselineskip}
+\setlength{\abovedisplayskip}{0.4\baselineskip}
+\setlength{\belowdisplayskip}{0.4\baselineskip}
+\setlength{\abovedisplayshortskip}{0.2\baselineskip}
+\setlength{\belowdisplayshortskip}{0.3\baselineskip}
 \title{Olympiad Inequalities}
 \author{Vin}
 \date{\today}
-
 \begin{document}
 \maketitle
-
-
 \section*{Disclaimer}
-
-These notes are a compact compilation of inequalities encountered during Olympiad preparation.They are intended for quick revision and references for,what I believe to be the more useful and common inequalities to know for olympiad problem-solving, not as a full learning resource. For proofs and additional cool inequalities, do check out
+These notes are a compact compilation of inequalities encountered during Olympiad preparation. They are intended for quick revision and as a reference to some of the most useful and common inequalities in Olympiad problem solving, not as a complete learning resource. For proofs and further inequalities, see
 \begin{center}
     \url{https://artofproblemsolving.com/wiki/index.php/Inequality#List_of_Theorems}
 \end{center}
 
-\section*{Arithmetic-Geometric Mean Inequality}
-
+\section*{Arithmetic--Geometric Mean Inequality}
 For $a_1,a_2,\ldots,a_n\geq 0$,
 \[
     \frac{a_1+a_2+\cdots+a_n}{n}
@@ -45,7 +39,6 @@ Equality iff
 \]
 
 \section*{Weighted AM--GM Inequality}
-
 For $a_1,a_2,\ldots,a_n\geq 0$ and weights $\lambda_1,\lambda_2,\ldots,\lambda_n>0$,
 \[
     \frac{\lambda_1a_1+\lambda_2a_2+\cdots+\lambda_na_n}{\lambda_1+\lambda_2+\cdots+\lambda_n}
@@ -58,8 +51,7 @@ Equality iff
 \]
 
 \section*{Power Mean Inequality}
-
-For $a_1,a_2,\ldots,a_n>0$ and $k_1>k_2$,
+For $a_1,a_2,\ldots,a_n>0$ and nonzero real numbers $k_1>k_2$,
 \[
     \left(\frac{1}{n}\sum_{i=1}^n a_i^{k_1}\right)^{1/k_1}
     \geq
@@ -69,8 +61,8 @@ Equality iff
 \[
     a_1=a_2=\cdots=a_n.
 \]
-\section*{Cauchy-Schwarz Inequality}
 
+\section*{Cauchy--Schwarz Inequality}
 For real $a_i,b_i$,
 \[
     \left(\sum_{i=1}^n a_ib_i\right)^2
@@ -78,14 +70,9 @@ For real $a_i,b_i$,
     \left(\sum_{i=1}^n a_i^2\right)
     \left(\sum_{i=1}^n b_i^2\right).
 \]
-Equality iff one vector is zero or
-\[
-    a_i=\lambda b_i \quad (i=1,2,\ldots,n)
-\]
-for some constant $\lambda$.
+Equality iff the vectors $(a_1,a_2,\ldots,a_n)$ and $(b_1,b_2,\ldots,b_n)$ are linearly dependent.
 
 \section*{Titu's Lemma}
-
 For real $a_i$ and $b_i>0$,
 \[
     \frac{a_1^2}{b_1}+\frac{a_2^2}{b_2}+\cdots+\frac{a_n^2}{b_n}
@@ -98,7 +85,6 @@ Equality iff
 \]
 
 \section*{Chebyshev's Inequality}
-
 If
 \[
     \begin{aligned}
@@ -116,12 +102,12 @@ then
 If the orders are opposite, the inequality reverses. Equality iff one sequence is constant.
 
 \section*{Rearrangement Inequality}
-
 If
 \[
-    a_1\leq a_2\leq \cdots\leq a_n,
-    \qquad
-    b_1\leq b_2\leq \cdots\leq b_n,
+    \begin{aligned}
+        a_1&\leq a_2\leq \cdots\leq a_n,\\
+        b_1&\leq b_2\leq \cdots\leq b_n,
+    \end{aligned}
 \]
 then for any permutation $\pi$,
 \[
@@ -133,9 +119,8 @@ then for any permutation $\pi$,
 \]
 If both sequences are strictly increasing, right equality iff $\pi(i)=i$; left equality iff $\pi(i)=n+1-i$.
 
-\section*{Holder's Inequality}
-
-For $p,q>1$ with $\frac{1}{p}+\frac{1}{q}=1$,
+\section*{H\"older's Inequality}
+For real $a_i,b_i$ and $p,q>1$ with $\frac{1}{p}+\frac{1}{q}=1$,
 \[
     \sum_{i=1}^n |a_ib_i|
     \leq
@@ -146,11 +131,10 @@ Equality iff one vector is zero or
 \[
     |a_i|^p=\lambda |b_i|^q \quad (i=1,2,\ldots,n)
 \]
-for some $\lambda\geq 0$.
+for some $\lambda>0$.
 
 \section*{Minkowski's Inequality}
-
-For $p>1$,
+For real $a_i,b_i$ and $p>1$,
 \[
     \left(\sum_{i=1}^n |a_i+b_i|^p\right)^{1/p}
     \leq
@@ -165,7 +149,6 @@ Equality iff one vector is zero or
 for some $\lambda\geq 0$.
 
 \section*{Jensen's Inequality}
-
 For convex $f$, $x_i$ in its domain, $\lambda_i\geq 0$, and $\sum_{i=1}^n\lambda_i=1$,
 \[
     f\left(\sum_{i=1}^n \lambda_ix_i\right)
@@ -175,7 +158,6 @@ For convex $f$, $x_i$ in its domain, $\lambda_i\geq 0$, and $\sum_{i=1}^n\lambda
 For concave $f$, the inequality reverses. If $f$ is strictly convex, equality iff all positive-weight $x_i$ are equal.
 
 \section*{Bernoulli's Inequality}
-
 For $x>-1$,
 \[
     (1+x)^r\geq 1+rx
@@ -188,7 +170,6 @@ For $x>-1$,
 For $r\neq 0,1$, equality iff $x=0$. For $r=0$ or $r=1$, equality always holds.
 
 \section*{Schur's Inequality}
-
 For $x,y,z\geq 0$ and $r>0$,
 \[
     x^r(x-y)(x-z)+y^r(y-z)(y-x)+z^r(z-x)(z-y)\geq 0.
@@ -207,22 +188,33 @@ For $r=1$,
     \geq
     x^2y+x^2z+y^2x+y^2z+z^2x+z^2y.
 \]
-\section*{Muirhead's Inequality}
 
-For $x_1,x_2,\ldots,x_n\geq 0$, if
+\section*{Muirhead's Inequality}
+Let
 \[
-    (a_1,a_2,\ldots,a_n)\succ (b_1,b_2,\ldots,b_n),
+    \alpha=(\alpha_1,\alpha_2,\ldots,\alpha_n),
+    \qquad
+    \beta=(\beta_1,\beta_2,\ldots,\beta_n)
 \]
-then
+be nonincreasing tuples of nonnegative real numbers. We say that $\alpha$ majorizes $\beta$, written $\alpha\succ\beta$, if
 \[
-    \sum_{\mathrm{sym}} x_1^{a_1}x_2^{a_2}\cdots x_n^{a_n}
+    \sum_{i=1}^k\alpha_i\geq\sum_{i=1}^k\beta_i
+    \quad (1\leq k<n),
+    \qquad
+    \sum_{i=1}^n\alpha_i=\sum_{i=1}^n\beta_i.
+\]
+If $x_1,x_2,\ldots,x_n\geq 0$ and $\alpha\succ\beta$, then
+\[
+    \sum_{\mathrm{sym}}x_1^{\alpha_1}x_2^{\alpha_2}\cdots x_n^{\alpha_n}
     \geq
-    \sum_{\mathrm{sym}} x_1^{b_1}x_2^{b_2}\cdots x_n^{b_n}.
+    \sum_{\mathrm{sym}}x_1^{\beta_1}x_2^{\beta_2}\cdots x_n^{\beta_n}.
 \]
-For positive variables, equality iff $x_1=x_2=\cdots=x_n$, unless the exponent tuples are the same up to permutation.
+For positive $x_i$ and $\alpha\neq\beta$, equality iff
+\[
+    x_1=x_2=\cdots=x_n.
+\]
 
 \section*{Nesbitt's Inequality}
-
 For $a,b,c>0$,
 \[
     \frac{a}{b+c}+\frac{b}{c+a}+\frac{c}{a+b}\geq \frac{3}{2}.
@@ -233,7 +225,6 @@ Equality iff
 \]
 
 \section*{Radon's Inequality}
-
 For $a_i\geq 0$, $b_i>0$, and $m>0$,
 \[
     \sum_{i=1}^n \frac{a_i^{m+1}}{b_i^m}
