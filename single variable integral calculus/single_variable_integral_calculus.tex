@@ -1,0 +1,793 @@
+\documentclass[11pt,a4paper,fleqn]{article}
+
+% ---------- Typography and page layout ----------
+\usepackage[margin=18mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools,amssymb}
+\usepackage{enumitem}
+\usepackage{needspace}
+
+% ---------- Global spacing ----------
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.42\baselineskip}
+\setlength{\mathindent}{0pt}
+\setlength{\abovedisplayskip}{0.55em}
+\setlength{\belowdisplayskip}{0.55em}
+\setlength{\abovedisplayshortskip}{0.35em}
+\setlength{\belowdisplayshortskip}{0.35em}
+\setlength{\jot}{0.38em}
+\allowdisplaybreaks[2]
+
+\setlist[enumerate]{
+    leftmargin=2.05em,
+    labelsep=0.6em,
+    itemsep=0.42em,
+    topsep=0.45em,
+    parsep=0pt,
+    partopsep=0pt
+}
+
+% ---------- Mathematical helpers ----------
+\newcommand{\dd}{\,\mathrm{d}}
+\newcommand{\cosec}{\operatorname{cosec}}
+\newcommand{\formulaheading}[1]{%
+  \Needspace{4\baselineskip}%
+  \par\medskip{\bfseries #1}\par\smallskip%
+}
+
+\newenvironment{formulas}
+  {\[\begin{aligned}}
+  {\end{aligned}\]}
+
+\newenvironment{formulacolumn}
+  {\begin{minipage}[t]{0.485\textwidth}\vspace{0pt}\[\begin{aligned}}
+  {\end{aligned}\]\end{minipage}}
+
+\newenvironment{integrallist}
+  {\begin{itemize}[
+      label=\(\bullet\),
+      leftmargin=1.65em,
+      labelsep=0.55em,
+      itemsep=0.55em,
+      topsep=0.15em,
+      parsep=0pt,
+      partopsep=0pt
+    ]}
+  {\end{itemize}}
+
+\newcommand{\theoremheading}[1]{%
+  \Needspace{7\baselineskip}%
+  \par\vspace{0.3em}\noindent\textbf{#1}\par\nobreak\vspace{-0.25em}%
+}
+
+\newenvironment{theoremlist}
+  {\begingroup
+   \setlength{\abovedisplayskip}{0.3em}%
+   \setlength{\belowdisplayskip}{0.3em}%
+   \setlength{\abovedisplayshortskip}{0.2em}%
+   \setlength{\belowdisplayshortskip}{0.2em}%
+   \begin{itemize}[
+      label=\(\bullet\),
+      leftmargin=1.65em,
+      labelsep=0.55em,
+      itemsep=0.3em,
+      topsep=0pt,
+      parsep=0pt,
+      partopsep=0pt
+    ]}
+  {\end{itemize}\endgroup}
+
+\newenvironment{methodbox}[1]
+  {\par\medskip{\bfseries #1}\par\smallskip\small}
+  {\par\medskip}
+
+\newenvironment{strategybox}[1]
+  {\par{\bfseries #1}\par\smallskip\small}
+  {\par}
+
+\begin{document}
+
+% ---------- Title ----------
+\begin{center}
+  {\fontsize{19}{22}\selectfont\bfseries Single Variable Integral Calculus}\par
+\end{center}
+
+\section*{Indefinite Integration}
+
+\subsection*{Standard antiderivatives}
+
+\noindent
+\begin{minipage}[t]{0.485\textwidth}
+\vspace{0pt}
+\begin{integrallist}
+\item \(\displaystyle
+      \int x^n\dd x=\frac{x^{n+1}}{n+1}+C,\quad n\ne-1\)
+\item \(\displaystyle
+      \int \frac{1}{x}\dd x=\ln|x|+C\)
+\item \(\displaystyle
+      \int e^x\dd x=e^x+C\)
+\item \(\displaystyle
+      \int \sec^2x\dd x=\tan x+C\)
+\item \(\displaystyle
+      \int \sec x\tan x\dd x=\sec x+C\)
+\item \(\displaystyle
+      \int \frac{1}{\sqrt{1-x^2}}\dd x=\sin^{-1}x+C\)
+\item \(\displaystyle
+      \int \frac{1}{x\sqrt{x^2-1}}\dd x=\sec^{-1}|x|+C\)
+\item \(\displaystyle
+      \int f^n(x) f'(x)\dd x
+      =\frac{f^{n+1}(x)}{n+1}+C\)
+\item \(\displaystyle
+      \int \tan x\dd x=-\ln|\cos x|+C\)
+\item \(\displaystyle
+      \int \sec x\dd x=\ln|\sec x+\tan x|+C\)
+\end{integrallist}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.485\textwidth}
+\vspace{0pt}
+\begin{integrallist}
+\item \(\displaystyle
+      \int a^x\dd x=\frac{a^x}{\ln a}+C,\quad a>0,\ a\ne1\)
+\item \(\displaystyle
+      \int \sin x\dd x=-\cos x+C\)
+\item \(\displaystyle
+      \int \cos x\dd x=\sin x+C\)
+\item \(\displaystyle
+      \int \cosec^2x\dd x=-\cot x+C\)
+\item \(\displaystyle
+      \int \cosec x\cot x\dd x=-\cosec x+C\)
+\item \(\displaystyle
+      \int \frac{1}{1+x^2}\dd x=\tan^{-1}x+C\)
+\item \(\displaystyle
+      \int \frac{f'(x)}{f(x)}\dd x=\ln|f(x)|+C\)
+\item \(\displaystyle
+      \int \cot x\dd x=\ln|\sin x|+C\)
+\item \(\displaystyle
+      \int \cosec x\dd x=\ln|\cosec x-\cot x|+C\)
+\end{integrallist}
+\end{minipage}
+
+\begin{integrallist}
+\item \(\displaystyle
+      \int f(ax+b)\dd x
+      =\frac{1}{a}F(ax+b)+C,\quad F'(x)=f(x),\quad a\ne0\)
+\end{integrallist}
+
+\noindent
+\begin{minipage}[t]{0.485\textwidth}
+\vspace{0pt}
+\begin{integrallist}
+\item \(\displaystyle
+      \int \sin(ax+b)\dd x=-\frac{1}{a}\cos(ax+b)+C\)
+\item \(\displaystyle
+      \int \tan(ax+b)\dd x
+      =-\frac{1}{a}\ln|\cos(ax+b)|+C\)
+\item \(\displaystyle
+      \int \tan^2x\dd x=\tan x-x+C\)
+\item \(\displaystyle
+      \int \sin^2x\dd x=\frac{x}{2}-\frac{\sin 2x}{4}+C\)
+\end{integrallist}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.485\textwidth}
+\vspace{0pt}
+\begin{integrallist}
+\item \(\displaystyle
+      \int \cos(ax+b)\dd x=\frac{1}{a}\sin(ax+b)+C\)
+\item \(\displaystyle
+      \int \cot(ax+b)\dd x
+      =\frac{1}{a}\ln|\sin(ax+b)|+C\)
+\item \(\displaystyle
+      \int \cot^2x\dd x=-\cot x-x+C\)
+\item \(\displaystyle
+      \int \cos^2x\dd x=\frac{x}{2}+\frac{\sin 2x}{4}+C\)
+\end{integrallist}
+\end{minipage}
+
+\begin{integrallist}
+\item \(\displaystyle
+      \int \sec(ax+b)\dd x
+      =\frac{1}{a}\ln|\sec(ax+b)+\tan(ax+b)|+C\)
+\item \(\displaystyle
+      \int \cosec(ax+b)\dd x
+      =\frac{1}{a}\ln|\cosec(ax+b)-\cot(ax+b)|+C\)
+\item \(\displaystyle
+      \int \sec^3x\dd x
+      =\frac{1}{2}\left[\sec x\tan x
+      +\ln|\sec x+\tan x|\right]+C\)
+\item \(\displaystyle
+      \int \cosec^3x\dd x
+      =\frac{1}{2}\left[-\cosec x\cot x
+      +\ln|\cosec x-\cot x|\right]+C\)
+\end{integrallist}
+
+\begin{integrallist}
+\item \(\displaystyle
+      \int \frac{\dd x}{x^2+a^2}
+      =\frac{1}{a}\tan^{-1}\!\left(\frac{x}{a}\right)+C\)
+\item \(\displaystyle
+      \int \frac{\dd x}{x^2-a^2}
+      =\frac{1}{2a}\ln\left|\frac{x-a}{x+a}\right|+C\)
+\item \(\displaystyle
+      \int \frac{\dd x}{a^2-x^2}
+      =\frac{1}{2a}\ln\left|\frac{a+x}{a-x}\right|+C\)
+\item \(\displaystyle
+      \int \frac{\dd x}{\sqrt{a^2-x^2}}
+      =\sin^{-1}\!\left(\frac{x}{a}\right)+C\)
+\item \(\displaystyle
+      \int \frac{\dd x}{\sqrt{a^2+x^2}}
+      =\ln\left|x+\sqrt{x^2+a^2}\right|+C\)
+\item \(\displaystyle
+      \int \frac{\dd x}{\sqrt{x^2-a^2}}
+      =\ln\left|x+\sqrt{x^2-a^2}\right|+C\)
+\item \(\displaystyle
+      \int \sqrt{a^2-x^2}\dd x
+      =\frac{x}{2}\sqrt{a^2-x^2}
+      +\frac{a^2}{2}\sin^{-1}\!\left(\frac{x}{a}\right)+C\)
+\item \(\displaystyle
+      \int \sqrt{a^2+x^2}\dd x
+      =\frac{x}{2}\sqrt{a^2+x^2}
+      +\frac{a^2}{2}\ln\left|x+\sqrt{x^2+a^2}\right|+C\)
+\item \(\displaystyle
+      \int \sqrt{x^2-a^2}\dd x
+      =\frac{x}{2}\sqrt{x^2-a^2}
+      -\frac{a^2}{2}\ln\left|x+\sqrt{x^2-a^2}\right|+C\)
+\item \(\displaystyle
+      \int \ln|f(x)|\dd x
+      =x\ln|f(x)|-\int\frac{x f'(x)}{f(x)}\dd x\)
+\item \(\displaystyle
+      \int \ln|x|\dd x=x\ln|x|-x+C\)
+\end{integrallist}
+
+\subsection*{Algebraic form integrals}
+
+\begin{methodbox}{Linear \& quadratic}
+For integrals of the form
+\begin{integrallist}
+\item \(\displaystyle
+      \int\frac{px+q}{ax^2+bx+c}\dd x\)
+\item \(\displaystyle
+      \int\frac{px+q}{\sqrt{ax^2+bx+c}}\dd x\)
+\item \(\displaystyle
+      \int(px+q)\sqrt{ax^2+bx+c}\dd x\)
+\end{integrallist}
+Rewrite the numerator as
+\[
+px+q
+=\lambda\frac{\dd}{\dd x}(ax^2+bx+c)+\mu
+=\lambda(2ax+b)+\mu.
+\]
+\end{methodbox}
+
+\begin{methodbox}{Quadratic over Quadratic}
+For integrals of the form
+\begin{integrallist}
+\item \(\displaystyle
+      \int\frac{ax^2+bx+c}{px^2+qx+r}\dd x\)
+\item \(\displaystyle
+      \int\frac{ax^2+bx+c}{\sqrt{px^2+qx+r}}\dd x\)
+\end{integrallist}
+rewrite the numerator as
+\[
+\begin{aligned}
+ax^2+bx+c
+&=\lambda(px^2+qx+r)
+  +\mu\frac{\dd}{\dd x}(px^2+qx+r)+\gamma\\
+&=\lambda(px^2+qx+r)+\mu(2px+q)+\gamma.
+\end{aligned}
+\]
+\end{methodbox}
+
+\subsection*{Trigonometric form integrals}
+
+\begin{methodbox}{Sine and Cosine Forms}
+For integrals of the form
+\begin{integrallist}
+\item \(\displaystyle
+      \int\frac{\dd x}{a\cos^2x+b\sin^2x}\)
+\item \(\displaystyle
+      \int\frac{\dd x}{a+b\sin^2x}\)
+\item \(\displaystyle
+      \int\frac{\dd x}{a+b\cos^2x}\)
+\item \(\displaystyle
+      \int\frac{\dd x}{(a\sin x+b\cos x)^2}\)
+\item \(\displaystyle
+      \int\frac{\dd x}{a+b\sin^2x+c\cos^2x}\)
+\end{integrallist}
+divide the numerator and denominator by \(\cos^2x\), then use
+\[
+\sec^2x=1+\tan^2x,
+\qquad t=\tan x.
+\]
+\end{methodbox}
+
+\begin{methodbox}{More Sine and Cosine}
+For integrals of the form
+\begin{integrallist}
+\item \(\displaystyle
+      \int\frac{\dd x}{a\sin x+b\cos x}\)
+\item \(\displaystyle
+      \int\frac{\dd x}{a+b\sin x}\)
+\item \(\displaystyle
+      \int\frac{\dd x}{a+b\cos x}\)
+\item \(\displaystyle
+      \int\frac{\dd x}{a\sin x+b\cos x+c}\)
+\end{integrallist}
+Use the tangent half-angle substitution
+\[
+\sin x=\frac{2\tan(x/2)}{1+\tan^2(x/2)},\qquad
+\cos x=\frac{1-\tan^2(x/2)}{1+\tan^2(x/2)},\qquad
+ t=\tan\frac{x}{2}.
+\]
+\end{methodbox}
+
+\begin{methodbox}{Trigonometric numerator and denominator}
+For integrals of the form
+\[
+\int\frac{p\cos x+q\sin x+r}{a\cos x+b\sin x+c}\dd x,
+\]
+Rewrite the numerator as
+\begin{align*}
+p\cos x+q\sin x+r
+={}&\lambda(a\cos x+b\sin x+c)\\
+&+\mu(-a\sin x+b\cos x)+\gamma.
+\end{align*}
+\end{methodbox}
+
+\subsection*{Exponential forms}
+\begin{integrallist}
+\item \(\displaystyle
+      \int e^x\bigl(f(x)+f'(x)\bigr)\dd x=f(x)e^x+C\)
+\item \(\displaystyle
+      \int e^{g(x)}\bigl(f(x)g'(x)+f'(x)\bigr)\dd x
+      =f(x)e^{g(x)}+C\)
+\item \(\displaystyle
+      \int e^{ax}\sin bx\dd x
+      =\frac{e^{ax}}{a^2+b^2}
+       \bigl(a\sin bx-b\cos bx\bigr)+C\)
+\item \(\displaystyle
+      \int e^{ax}\cos bx\dd x
+      =\frac{e^{ax}}{a^2+b^2}
+       \bigl(a\cos bx+b\sin bx\bigr)+C\)
+\end{integrallist}
+
+
+
+\section*{Integration by Parts}
+\begin{integrallist}
+\item \(\displaystyle
+      \int u\dd v=uv-\int v\dd u\)
+\item \(\displaystyle
+      \int u(x)v(x)\dd x
+      =u(x)\int v(x)\dd x
+      -\int u'(x)\left(\int v(x)\dd x\right)\dd x\)
+\end{integrallist}
+
+\section*{Reduction Strategies}
+
+\noindent
+\begin{minipage}[t]{0.49\textwidth}
+\begin{strategybox}{Powers of sine and cosine}
+For
+\[
+\int\sin^m x\cos^n x\dd x,
+\qquad m,n\in\mathbb N,
+\]
+use the following cases.
+\begin{enumerate}[leftmargin=1.8em,itemsep=0.25em,topsep=0.3em]
+\item If \(m\) is odd, retain one factor of \(\sin x\), use
+      \(\sin^2x=1-\cos^2x\), and put \(t=\cos x\).
+\item If \(n\) is odd, retain one factor of \(\cos x\), use
+      \(\cos^2x=1-\sin^2x\), and put \(t=\sin x\).
+\item If both \(m\) and \(n\) are even, use
+      \[
+      \sin^2x=\frac{1-\cos 2x}{2},\qquad
+      \cos^2x=\frac{1+\cos 2x}{2}.
+      \]
+\item If \(m,n\in\mathbb Z\), \(m+n\) is even, and negative powers occur,
+      use one of the following substitutions:
+      \[
+      \begin{aligned}
+      t&=\tan x,\\[-0.1em]
+      \sin^m x\cos^n x\dd x
+      &=t^m(1+t^2)^{-(m+n+2)/2}\dd t;\\[0.35em]
+      t&=\cot x,\\[-0.1em]
+      \sin^m x\cos^n x\dd x
+      &=-t^n(1+t^2)^{-(m+n+2)/2}\dd t.
+      \end{aligned}
+      \]
+\end{enumerate}
+\end{strategybox}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.49\textwidth}
+\begin{strategybox}{Binomial differentials}
+For
+\[
+\int x^m(a+bx^n)^p\dd x,
+\qquad m,n,p\in\mathbb Q,
+\quad n\ne0,
+\]
+use the following cases.
+\begin{enumerate}[leftmargin=1.8em,itemsep=0.25em,topsep=0.3em]
+\item If \(p\in\mathbb Z_{\ge0}\), use the binomial theorem and expand.
+\item If \(p\in\mathbb Z_{<0}\), put \(x=t^k\), where \(k\) is the least
+      common multiple of the denominators of \(m\) and \(n\).
+\item If \(\dfrac{m+1}{n}\in\mathbb Z\) and \(p\notin\mathbb Z\), put
+      \[
+      a+bx^n=t^k,
+      \]
+      where \(k\) is the denominator of \(p\) in lowest terms.
+\item If \(\dfrac{m+1}{n}+p\in\mathbb Z\) and \(p\notin\mathbb Z\), put
+      \[
+      a+bx^n=t^k x^n,
+      \]
+      where \(k\) is the denominator of \(p\) in lowest terms.
+\end{enumerate}
+\end{strategybox}
+\end{minipage}
+
+\section*{Definite Integrals}
+
+\formulaheading{Riemann Sums}
+\begin{integrallist}
+\item For an integrable function \(f\) on \([a,b]\),
+      \(\displaystyle
+      \int_a^b f(x)\dd x
+      =\lim_{n\to\infty}\frac{b-a}{n}
+       \sum_{r=1}^{n}
+       f\!\left(a+\frac{r(b-a)}{n}\right)\)
+\item For an integrable function \(f\) on \([0,1]\),
+      \(\displaystyle
+      \lim_{n\to\infty}\frac{1}{n}
+      \sum_{r=1}^{n}f\!\left(\frac{r}{n}\right)
+      =\int_0^1 f(x)\dd x\)
+\end{integrallist}
+
+
+\formulaheading{Basic properties}
+\begin{integrallist}
+\item \(\displaystyle
+      \int_a^a f(x)\dd x=0\)
+\item \(\displaystyle
+      \int_a^b f(x)\dd x=-\int_b^a f(x)\dd x\)
+\item \(\displaystyle
+      \int_a^b f(x)\dd x
+      =\int_a^c f(x)\dd x+\int_c^b f(x)\dd x\)
+\item \(\displaystyle
+      \int_a^b\bigl(\lambda f(x)+\mu g(x)\bigr)\dd x
+      =\lambda\int_a^b f(x)\dd x
+      +\mu\int_a^b g(x)\dd x\)
+\item If \(m\le f(x)\le M\) on \([a,b]\), where \(a<b\), then
+      \(\displaystyle
+      m(b-a)\le\int_a^b f(x)\dd x\le M(b-a)\).
+\item If \(f(x)\le g(x)\) on \([a,b]\), where \(a<b\), then
+      \(\displaystyle
+      \int_a^b f(x)\dd x\le\int_a^b g(x)\dd x\).
+\item If \(a<b\), then
+      \(\displaystyle
+      \left|\int_a^b f(x)\dd x\right|
+      \le\int_a^b|f(x)|\dd x\)
+\end{integrallist}
+
+\formulaheading{Change of variable and integration by parts}
+\begin{integrallist}
+\item If \(f\) is continuous and \(\phi\) is differentiable, then
+      \(\displaystyle
+      \int_a^b f\bigl(\phi(x)\bigr)\phi'(x)\dd x
+      =\int_{\phi(a)}^{\phi(b)}f(t)\dd t\)
+\item If \(u\) and \(v\) are differentiable, then
+      \(\displaystyle
+      \int_a^b u(x)v'(x)\dd x
+      =\bigl[u(x)v(x)\bigr]_a^b
+      -\int_a^b u'(x)v(x)\dd x\)
+\end{integrallist}
+
+\formulaheading{Symmetry properties}
+\begin{integrallist}
+\item \(\displaystyle
+      \int_a^b f(x)\dd x
+      =\int_a^b f(a+b-x)\dd x\)
+\item \(\displaystyle
+      \int_a^b f(x)\dd x
+      =\frac{1}{2}\int_a^b
+       \bigl[f(x)+f(a+b-x)\bigr]\dd x\)
+\item \(\displaystyle
+      \int_0^a f(x)\dd x=\int_0^a f(a-x)\dd x\)
+\item \(\displaystyle
+      \int_0^{2a}f(x)\dd x
+      =\int_0^a\bigl[f(x)+f(2a-x)\bigr]\dd x\)
+\item If \(f(-x)=f(x)\), then
+      \(\displaystyle
+      \int_{-a}^{a}f(x)\dd x=2\int_0^a f(x)\dd x\).
+\item If \(f(-x)=-f(x)\), then
+      \(\displaystyle
+      \int_{-a}^{a}f(x)\dd x=0\).
+\item If \(f(a+b-x)=-f(x)\), then
+      \(\displaystyle
+      \int_a^b f(x)\dd x=0\).
+\item If \(f(a+b-x)=f(x)\), then
+      \(\displaystyle
+      \int_a^b x f(x)\dd x
+      =\frac{a+b}{2}\int_a^b f(x)\dd x\).
+\item \(\displaystyle
+      \int_a^b
+      \frac{f(x)}{f(x)+f(a+b-x)}\dd x
+      =\frac{b-a}{2}\), provided the denominator is non-zero.
+\end{integrallist}
+
+\formulaheading{Periodic and trigonometric properties}
+\begin{integrallist}
+\item If \(T>0\) and \(f(x+T)=f(x)\), then
+      \(\displaystyle
+      \int_a^{a+T}f(x)\dd x=\int_0^T f(x)\dd x\).
+\item If \(T>0\), \(f(x+T)=f(x)\), and \(n\in\mathbb N\), then
+      \(\displaystyle
+      \int_a^{a+nT}f(x)\dd x=n\int_0^T f(x)\dd x\).
+\item If \(T>0\) and \(f(x+T)=-f(x)\), then
+      \(\displaystyle
+      \int_a^{a+2T}f(x)\dd x=0\).
+\item \(\displaystyle
+      \int_0^{\pi/2}f(\sin x,\cos x)\dd x
+      =\int_0^{\pi/2}f(\cos x,\sin x)\dd x\)
+\item \(\displaystyle
+      \int_0^\pi f(\sin x)\dd x
+      =2\int_0^{\pi/2}f(\sin x)\dd x\)
+\item \(\displaystyle
+      \int_0^\pi x f(\sin x)\dd x
+      =\frac{\pi}{2}\int_0^\pi f(\sin x)\dd x\)
+\end{integrallist}
+
+\formulaheading{Wallis formula}
+\begin{integrallist}
+\item \(\displaystyle
+      W_n:=\int_0^{\pi/2}\sin^n x\dd x
+      =\int_0^{\pi/2}\cos^n x\dd x,
+      \quad n\in\mathbb Z_{\ge0}\)
+\item \(\displaystyle
+      W_0=\frac{\pi}{2},\qquad W_1=1\)
+\item \(\displaystyle
+      W_n=\frac{n-1}{n}W_{n-2},\quad n\ge2\)
+\item \(\displaystyle
+      W_nW_{n-1}=\frac{\pi}{2n},\quad n\ge1\)
+\item \(\displaystyle
+      W_{2m}
+      =\frac{(2m-1)!!}{(2m)!!}\frac{\pi}{2}
+      =\frac{(2m)!}{2^{2m}(m!)^2}\frac{\pi}{2}\)
+\item \(\displaystyle
+      W_{2m+1}
+      =\frac{(2m)!!}{(2m+1)!!}
+      =\frac{2^{2m}(m!)^2}{(2m+1)!},
+      \quad m\in\mathbb Z_{\ge0}\)
+\item \(\displaystyle
+      \int_0^\pi\sin^n x\dd x=2W_n\)
+\item \(\displaystyle
+      \int_0^{2\pi}\sin^n x\dd x
+      =\int_0^{2\pi}\cos^n x\dd x
+      =
+      \begin{cases}
+      4W_n,&n\text{ even},\\
+      0,&n\text{ odd}
+      \end{cases}\)
+\item \(\displaystyle
+      W_n=\frac12 B\!\left(\frac{n+1}{2},\frac12\right)
+      =\frac{\sqrt{\pi}}{2}
+       \frac{\Gamma\!\left(\frac{n+1}{2}\right)}
+            {\Gamma\!\left(\frac{n+2}{2}\right)}\)
+\item \(\displaystyle
+      \frac{\pi}{2}
+      =\prod_{k=1}^{\infty}
+       \frac{(2k)^2}{(2k-1)(2k+1)}\)
+\item \(\displaystyle
+      W_n\sim\sqrt{\frac{\pi}{2n}},
+      \quad n\to\infty\)
+\end{integrallist}
+
+\formulaheading{Gamma function}
+\begin{integrallist}
+\item \(\displaystyle
+      \Gamma(z)=\int_0^\infty t^{z-1}e^{-t}\dd t,
+      \quad \operatorname{Re}z>0\)
+\item \(\displaystyle
+      \Gamma(z+1)=z\Gamma(z)\)
+\item \(\displaystyle
+      \Gamma(1)=1,\qquad
+      \Gamma(n+1)=n!,\quad n\in\mathbb Z_{\ge0}\)
+\item \(\displaystyle
+      \Gamma\!\left(\frac12\right)=\sqrt{\pi}\)
+\item \(\displaystyle
+      \Gamma\!\left(n+\frac12\right)
+      =\frac{(2n)!}{4^n n!}\sqrt{\pi}
+      =\frac{(2n-1)!!}{2^n}\sqrt{\pi},
+      \quad n\in\mathbb Z_{\ge0}\)
+\item \(\displaystyle
+      \Gamma(z)\Gamma(1-z)
+      =\frac{\pi}{\sin(\pi z)},\quad z\notin\mathbb Z\)
+\item \(\displaystyle
+      \Gamma(2z)
+      =\frac{2^{2z-1}}{\sqrt{\pi}}
+       \Gamma(z)\Gamma\!\left(z+\frac12\right)\)
+\item \(\displaystyle
+      \int_0^\infty x^{s-1}e^{-ax}\dd x
+      =\frac{\Gamma(s)}{a^s},\quad a,s>0\)
+\item \(\displaystyle
+      \int_0^\infty x^m e^{-ax^n}\dd x
+      =\frac1n a^{-(m+1)/n}
+       \Gamma\!\left(\frac{m+1}{n}\right),
+      \quad a,n>0,\ m>-1\)
+\item \(\displaystyle
+      \int_0^\infty e^{-ax^2}\dd x
+      =\frac12\sqrt{\frac{\pi}{a}},\qquad
+      \int_{-\infty}^{\infty}e^{-ax^2}\dd x
+      =\sqrt{\frac{\pi}{a}},\quad a>0\)
+\end{integrallist}
+
+\formulaheading{Beta function}
+\begin{integrallist}
+\item \(\displaystyle
+      B(p,q)=\int_0^1 t^{p-1}(1-t)^{q-1}\dd t,
+      \quad p,q>0\)
+\item \(\displaystyle
+      B(p,q)=2\int_0^{\pi/2}
+      \sin^{2p-1}x\cos^{2q-1}x\dd x\)
+\item \(\displaystyle
+      B(p,q)=\int_0^\infty
+      \frac{t^{p-1}}{(1+t)^{p+q}}\dd t\)
+\item \(\displaystyle
+      B(p,q)=\frac{\Gamma(p)\Gamma(q)}{\Gamma(p+q)}\)
+\item \(\displaystyle
+      B(p,q)=B(q,p)\)
+\item \(\displaystyle
+      B(p+1,q)=\frac{p}{p+q}B(p,q),\qquad
+      B(p,q+1)=\frac{q}{p+q}B(p,q)\)
+\item \(\displaystyle
+      B(p,1)=\frac1p\)
+\item \(\displaystyle
+      B(m,n)=\frac{(m-1)!(n-1)!}{(m+n-1)!},
+      \quad m,n\in\mathbb N\)
+\item \(\displaystyle
+      \int_a^b(x-a)^{p-1}(b-x)^{q-1}\dd x
+      =(b-a)^{p+q-1}B(p,q),
+      \quad b>a,\ p,q>0\)
+\item \(\displaystyle
+      \int_0^{\pi/2}\sin^m x\cos^n x\dd x
+      =\frac12
+       B\!\left(\frac{m+1}{2},\frac{n+1}{2}\right),
+      \quad m,n>-1\)
+\item \(\displaystyle
+      \int_0^\infty\frac{x^{\mu-1}}{(1+x^\nu)^\rho}\dd x
+      =\frac1\nu
+       B\!\left(\frac{\mu}{\nu},
+                \rho-\frac{\mu}{\nu}\right),
+      \quad \nu,\rho>0,\ 0<\mu<\nu\rho\)
+\end{integrallist}
+
+\section*{Basic Theorems of Calculus}
+
+\theoremheading{Intermediate Value Theorem}
+\begin{theoremlist}
+\item Let \(a<b\) and let \(f:[a,b]\to\mathbb R\) be continuous.
+      If \(N\) lies between \(f(a)\) and \(f(b)\), then there exists
+      \(c\in[a,b]\) such that
+      \[
+      f(c)=N.
+      \]
+\end{theoremlist}
+
+\theoremheading{Bolzano's Theorem}
+\begin{theoremlist}
+\item Let \(a<b\) and let \(f:[a,b]\to\mathbb R\) be continuous.
+      If
+      \[
+      f(a)f(b)<0,
+      \]
+      then there exists \(c\in(a,b)\) such that
+      \[
+      f(c)=0.
+      \]
+\end{theoremlist}
+
+\theoremheading{Extreme Value Theorem}
+\begin{theoremlist}
+\item Let \(f:[a,b]\to\mathbb R\) be continuous. Then there exist
+      \(x_{\min},x_{\max}\in[a,b]\) such that
+      \[
+      f(x_{\min})\le f(x)\le f(x_{\max})
+      \qquad\text{for every }x\in[a,b].
+      \]
+\end{theoremlist}
+
+\theoremheading{Fermat's Theorem}
+\begin{theoremlist}
+\item Let \(f\) be defined on an open interval containing \(c\).
+      If \(f\) has a local maximum or local minimum at \(c\) and is
+      differentiable at \(c\), then
+      \[
+      f'(c)=0.
+      \]
+\end{theoremlist}
+
+\theoremheading{Rolle's Theorem}
+\begin{theoremlist}
+\item Let \(a<b\). If \(f:[a,b]\to\mathbb R\) is continuous on
+      \([a,b]\), differentiable on \((a,b)\), and
+      \[
+      f(a)=f(b),
+      \]
+      then there exists \(c\in(a,b)\) such that
+      \[
+      f'(c)=0.
+      \]
+\end{theoremlist}
+
+\theoremheading{Lagrange's Mean Value Theorem}
+\begin{theoremlist}
+\item Let \(a<b\). If \(f:[a,b]\to\mathbb R\) is continuous on
+      \([a,b]\) and differentiable on \((a,b)\), then there exists
+      \(c\in(a,b)\) such that
+      \[
+      f'(c)=\frac{f(b)-f(a)}{b-a}.
+      \]
+\end{theoremlist}
+
+\theoremheading{Cauchy's Mean Value Theorem}
+\begin{theoremlist}
+\item Let \(a<b\). If \(f,g:[a,b]\to\mathbb R\) are continuous on
+      \([a,b]\) and differentiable on \((a,b)\), then there exists
+      \(c\in(a,b)\) such that
+      \[
+      [f(b)-f(a)]g'(c)=[g(b)-g(a)]f'(c).
+      \]
+\end{theoremlist}
+
+\theoremheading{Mean Value Theorem for Integrals}
+\begin{theoremlist}
+\item Let \(a<b\) and let \(f:[a,b]\to\mathbb R\) be continuous.
+      Then there exists \(c\in[a,b]\) such that
+      \[
+      \int_a^b f(x)\dd x=f(c)(b-a).
+      \]
+\item Let \(a<b\), let \(f:[a,b]\to\mathbb R\) be continuous, and let \(g\) be
+      integrable and non-negative on \([a,b]\). Then there exists
+      \(c\in[a,b]\) such that
+      \[
+      \int_a^b f(x)g(x)\dd x
+      =f(c)\int_a^b g(x)\dd x.
+      \]
+\end{theoremlist}
+
+\theoremheading{Fundamental Theorem of Calculus}
+\begin{theoremlist}
+\item Let \(a<b\), let \(f:[a,b]\to\mathbb R\) be continuous, and define
+      \[
+      F(x)=\int_a^x f(t)\dd t.
+      \]
+      Then \(F\) is continuous on \([a,b]\), differentiable on
+      \((a,b)\), and
+      \[
+      F'(x)=f(x).
+      \]
+\item Let \(a<b\), let \(f:[a,b]\to\mathbb R\) be continuous, and let \(F\) be any
+      antiderivative of \(f\) on \([a,b]\). Then
+      \[
+      \int_a^b f(x)\dd x=F(b)-F(a).
+      \]
+\end{theoremlist}
+
+\theoremheading{L'H\^opital's Rule}
+\begin{theoremlist}
+\item Let \(f\) and \(g\) be differentiable on a deleted neighbourhood
+      of \(a\), with \(g'(x)\ne0\). Suppose that either
+      \(\lim_{x\to a}f(x)=\lim_{x\to a}g(x)=0\) or
+      \(\lim_{x\to a}|f(x)|=\lim_{x\to a}|g(x)|=\infty\).
+      If \(\lim_{x\to a}f'(x)/g'(x)=L\), where \(L\) is finite or
+      infinite, then
+      \[
+      \lim_{x\to a}\frac{f(x)}{g(x)}=L.
+      \]
+\end{theoremlist}
+
+\end{document}
