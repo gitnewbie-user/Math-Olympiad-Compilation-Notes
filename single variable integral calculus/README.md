@@ -8,3 +8,5 @@ The notes are intended to provide a comprehensive compilation of definitions, id
 
 - Single Variable Integral Calculus
 
+## Edit
+- Even though Calculus is probably not going to be tested for most Olympiads, 1 or 2 questions do come out in Singapore Mathematical Olympiad so I figured that I should upload those as well.
